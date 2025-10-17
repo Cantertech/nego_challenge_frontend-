@@ -138,16 +138,15 @@ const Index = () => {
                 <span className="block mt-2 text-foreground font-semibold">Every comment. Every question. Every haggle. Handled automatically.</span>
               </p>
               
-              {/* Video Placeholder */}
+              {/* Demo Video */}
               <div className="relative aspect-video bg-muted rounded-2xl border-2 border-primary/20 shadow-2xl overflow-hidden">
-                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/10 to-accent/10">
-                  <div className="text-center space-y-4">
-                    <div className="w-20 h-20 mx-auto rounded-full bg-primary/20 flex items-center justify-center">
-                      <div className="w-0 h-0 border-l-[16px] border-l-primary border-y-[12px] border-y-transparent ml-1"></div>
-                    </div>
-                    <p className="text-muted-foreground font-semibold">Demo Video Coming Soon</p>
-                  </div>
-                </div>
+                <iframe
+                  className="absolute inset-0 w-full h-full"
+                  src="https://www.youtube.com/embed/mMsaSFWUbKc"
+                  title="Nego Challenge Demo Video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
               </div>
 
               {/* Value Props for Sellers */}
