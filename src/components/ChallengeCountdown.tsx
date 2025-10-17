@@ -3,7 +3,10 @@ import { Trophy, Share2, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const ChallengeCountdown = () => {
-  const challengeEndDate = new Date("2024-10-24T23:59:59");
+  // Challenge starts: October 17, 2025 at 9:30 AM
+  // Challenge ends: October 24, 2025 at 9:30 AM (7 days later)
+  const challengeStartDate = new Date("2025-10-17T09:30:00");
+  const challengeEndDate = new Date("2025-10-24T09:30:00");
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -11,9 +14,14 @@ const ChallengeCountdown = () => {
     seconds: 0,
   });
 
+  const [hasStarted, setHasStarted] = useState(false);
+
   useEffect(() => {
     const calculateTimeLeft = () => {
       const now = new Date();
+      const hasStartedNow = now >= challengeStartDate;
+      setHasStarted(hasStartedNow);
+      
       const difference = challengeEndDate.getTime() - now.getTime();
 
       if (difference > 0) {
@@ -58,7 +66,7 @@ const ChallengeCountdown = () => {
         </div>
 
         <h3 className="text-2xl md:text-3xl font-heading font-bold text-foreground">
-          Challenge Ends In
+          {hasStarted ? "Challenge Ends In" : "Challenge Starts Soon!"}
         </h3>
 
         {/* Countdown Timer */}
@@ -83,7 +91,10 @@ const ChallengeCountdown = () => {
 
         <div className="bg-white/50 dark:bg-gray-800/50 rounded-lg p-4 space-y-3">
           <p className="text-foreground font-semibold">
-            🏆 Challenge ends: <span className="text-accent">October 24, 2024</span>
+            🚀 Challenge starts: <span className="text-primary">October 17, 2025 at 9:30 AM</span>
+          </p>
+          <p className="text-foreground font-semibold">
+            🏆 Challenge ends: <span className="text-accent">October 24, 2025 at 9:30 AM</span>
           </p>
           <p className="text-sm text-muted-foreground">
             Winners will be announced on this platform and all our social media channels
