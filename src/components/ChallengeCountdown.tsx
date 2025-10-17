@@ -3,10 +3,11 @@ import { Trophy, Share2, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const ChallengeCountdown = () => {
-  // Challenge starts: October 17, 2025 at 9:30 AM
-  // Challenge ends: October 24, 2025 at 9:30 AM (7 days later)
-  const challengeStartDate = new Date("2025-10-17T09:30:00");
-  const challengeEndDate = new Date("2025-10-24T09:30:00");
+  // Challenge starts NOW and ends in 7 days
+  const now = new Date();
+  const challengeStartDate = now;
+  const challengeEndDate = new Date(now.getTime() + (7 * 24 * 60 * 60 * 1000)); // 7 days from now
+  
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -14,15 +15,12 @@ const ChallengeCountdown = () => {
     seconds: 0,
   });
 
-  const [hasStarted, setHasStarted] = useState(false);
+  const [hasStarted, setHasStarted] = useState(true);
 
   useEffect(() => {
     const calculateTimeLeft = () => {
-      const now = new Date();
-      const hasStartedNow = now >= challengeStartDate;
-      setHasStarted(hasStartedNow);
-      
-      const difference = challengeEndDate.getTime() - now.getTime();
+      const currentTime = new Date();
+      const difference = challengeEndDate.getTime() - currentTime.getTime();
 
       if (difference > 0) {
         setTimeLeft({
@@ -31,6 +29,14 @@ const ChallengeCountdown = () => {
           minutes: Math.floor((difference / 1000 / 60) % 60),
           seconds: Math.floor((difference / 1000) % 60),
         });
+      } else {
+        // Challenge has ended
+        setTimeLeft({
+          days: 0,
+          hours: 0,
+          minutes: 0,
+          seconds: 0,
+        });
       }
     };
 
@@ -38,7 +44,7 @@ const ChallengeCountdown = () => {
     const timer = setInterval(calculateTimeLeft, 1000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [challengeEndDate]);
 
   const shareChallenge = () => {
     const shareText = "🎯 Join the Nego Challenge! Test your negotiation skills against AI and win prizes! 🏆";
@@ -66,7 +72,7 @@ const ChallengeCountdown = () => {
         </div>
 
         <h3 className="text-2xl md:text-3xl font-heading font-bold text-foreground">
-          {hasStarted ? "Challenge Ends In" : "Challenge Starts Soon!"}
+          Challenge Ends In
         </h3>
 
         {/* Countdown Timer */}
@@ -91,10 +97,17 @@ const ChallengeCountdown = () => {
 
         <div className="bg-white/50 dark:bg-gray-800/50 rounded-lg p-4 space-y-3">
           <p className="text-foreground font-semibold">
-            🚀 Challenge starts: <span className="text-primary">October 17, 2025 at 9:30 AM</span>
+            🚀 Challenge is <span className="text-primary font-bold">LIVE NOW!</span>
           </p>
           <p className="text-foreground font-semibold">
-            🏆 Challenge ends: <span className="text-accent">October 24, 2025 at 9:30 AM</span>
+            🏆 Challenge ends: <span className="text-accent">{challengeEndDate.toLocaleString('en-US', { 
+              month: 'long', 
+              day: 'numeric', 
+              year: 'numeric',
+              hour: 'numeric',
+              minute: '2-digit',
+              hour12: true
+            })}</span>
           </p>
           <p className="text-sm text-muted-foreground">
             Winners will be announced on this platform and all our social media channels
