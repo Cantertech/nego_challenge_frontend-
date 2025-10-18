@@ -3,10 +3,8 @@ import { Trophy, Share2, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const ChallengeCountdown = () => {
-  // Challenge starts NOW and ends in 7 days
-  const now = new Date();
-  const challengeStartDate = now;
-  const challengeEndDate = new Date(now.getTime() + (7 * 24 * 60 * 60 * 1000)); // 7 days from now
+  // Challenge end date - Set to a specific date (30 days from Oct 18, 2025)
+  const challengeEndDate = new Date('2025-11-17T23:59:59'); // November 17, 2025 at 11:59 PM
   
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -14,8 +12,6 @@ const ChallengeCountdown = () => {
     minutes: 0,
     seconds: 0,
   });
-
-  const [hasStarted, setHasStarted] = useState(true);
 
   useEffect(() => {
     const calculateTimeLeft = () => {

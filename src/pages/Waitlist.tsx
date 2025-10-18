@@ -2,12 +2,11 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { Mail, Phone, Sparkles, MessageCircle, Clock, Copy, Share2, Trophy, Award, Zap } from "lucide-react";
+import { Mail, Phone, Sparkles, MessageCircle, Clock, Copy, Share2, Zap, Bot, TrendingUp, Users, ArrowRight } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { apiService } from "@/services/api";
 import { useNavigate } from "react-router-dom";
 import heroBackground from "@/assets/hero-background.jpg";
-import appleWatch from "@/assets/apple_watch.png";
 
 const Waitlist = () => {
   const [email, setEmail] = useState("");
@@ -78,11 +77,11 @@ const Waitlist = () => {
 
   const shareReferralLink = () => {
     const link = `${window.location.origin}?ref=${referralCode}`;
-    const text = "🎯 Join me in the Nego Challenge! Test your negotiation skills against AI and win prizes! 🏆";
+    const text = "🎯 Join me on the Negomind waitlist! AI that handles all your sales comments on TikTok & Instagram! 🚀";
 
     if (navigator.share) {
       navigator.share({
-        title: "The Nego Challenge",
+        title: "Negomind - AI Sales Assistant",
         text: text,
         url: link,
       });
@@ -97,95 +96,181 @@ const Waitlist = () => {
       <div 
         className="relative min-h-screen bg-cover bg-center bg-no-repeat"
         style={{ 
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url(${heroBackground})`
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url(${heroBackground})`
         }}
       >
         {/* Overlay gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-transparent to-background/80" />
         
         <main className="relative container mx-auto px-4 py-12 md:py-20 min-h-screen flex items-center">
-          <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in">
+          <div className="max-w-5xl mx-auto text-center space-y-8 animate-fade-in">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 backdrop-blur-sm border border-primary/30 text-primary-foreground animate-scale-in">
-              <Sparkles className="h-4 w-4" />
-              <span className="text-sm font-semibold">The Ultimate Negotiation Challenge</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 backdrop-blur-sm border border-accent/30 text-white animate-scale-in">
+              <Bot className="h-4 w-4" />
+              <span className="text-sm font-semibold">AI-Powered Sales Assistant</span>
             </div>
 
             {/* Main Headline */}
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-white leading-tight drop-shadow-2xl">
-              Welcome to Nego Challenge!
+              Never Miss a Sale on Social Media Again
             </h1>
 
             {/* Sub-headline */}
-            <p className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto drop-shadow-lg">
-              Test your bargaining skills against our AI with the personality of a Makola Market pro. 
-              Win prizes and get access to <span className="text-accent font-bold">Nego.chat Pro!</span>
+            <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto drop-shadow-lg leading-relaxed">
+              <span className="text-accent font-bold">Negomind</span> is your AI sales agent that replies to every comment 
+              on your TikTok & Instagram posts. It negotiates prices, answers questions, and closes deals—automatically. 
+              <span className="block mt-3 text-white font-semibold">24/7. Smart. Unlimited.</span>
             </p>
 
-            {/* Product Showcase */}
-            <div className="my-8 max-w-md mx-auto">
-              <div className="bg-white/95 backdrop-blur-md rounded-2xl p-6 shadow-2xl border-2 border-accent/30 animate-scale-in">
-                <div className="flex items-center justify-center gap-2 mb-3">
-                  <Zap className="h-5 w-5 text-accent" />
-                  <h3 className="font-heading font-bold text-lg text-foreground">Today's Challenge Product</h3>
-                </div>
-                <div className="relative group">
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 rounded-lg blur-xl group-hover:blur-2xl transition-all duration-300"></div>
-                  <img 
-                    src={appleWatch} 
-                    alt="Apple Watch - Challenge Product"
-                    className="relative w-full h-48 object-contain rounded-lg"
-                  />
-                </div>
-                <div className="mt-4 text-center">
-                  <h4 className="font-bold text-xl text-foreground">Premium Apple Watch</h4>
-                  <p className="text-sm text-muted-foreground mt-1">Starting Price: <span className="text-2xl font-bold text-primary">450 GHS</span></p>
-                  <p className="text-xs text-accent font-semibold mt-2">Can you negotiate a better deal?</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Prize Information */}
-            <div className="grid md:grid-cols-2 gap-4 md:gap-6 max-w-2xl mx-auto py-8">
-              <div className="bg-white/95 backdrop-blur-md border-2 border-primary/20 rounded-2xl p-4 md:p-8 shadow-2xl hover:shadow-primary/20 transition-all duration-300 hover:scale-105 animate-scale-in">
-                <Trophy className="h-8 md:h-12 w-8 md:w-12 text-accent mx-auto mb-3 md:mb-4 animate-float" />
-                <h3 className="font-heading font-bold text-xl md:text-2xl mb-2 md:mb-3 text-primary">1st Prize</h3>
-                <p className="text-foreground text-sm md:text-lg">
-                  <span className="text-xl md:text-2xl font-bold text-accent">100 GHS</span> cash + 
-                  <span className="font-semibold"> 3 Months</span> of Nego.chat Pro for FREE
+            {/* Key Features */}
+            <div className="grid md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto py-8">
+              <div className="bg-white/10 backdrop-blur-md border-2 border-white/20 rounded-2xl p-6 md:p-8 shadow-2xl hover:bg-white/15 transition-all duration-300 hover:scale-105 animate-scale-in">
+                <MessageCircle className="h-10 md:h-12 w-10 md:w-12 text-accent mx-auto mb-4 animate-float" />
+                <h3 className="font-heading font-bold text-xl md:text-2xl mb-2 text-white">Auto-Reply</h3>
+                <p className="text-white/80 text-sm md:text-base">
+                  Responds to every "Is this available?" and "How much?" instantly
                 </p>
               </div>
-              <div className="bg-white/95 backdrop-blur-md border-2 border-primary/20 rounded-2xl p-4 md:p-8 shadow-2xl hover:shadow-primary/20 transition-all duration-300 hover:scale-105 animate-scale-in" style={{ animationDelay: "0.1s" }}>
-                <Award className="h-8 md:h-12 w-8 md:w-12 text-primary mx-auto mb-3 md:mb-4 animate-float" style={{ animationDelay: "0.5s" }} />
-                <h3 className="font-heading font-bold text-xl md:text-2xl mb-2 md:mb-3 text-primary">2nd Prize</h3>
-                <p className="text-foreground text-sm md:text-lg">
-                  <span className="text-xl md:text-2xl font-bold text-accent">50 GHS</span> cash + 
-                  <span className="font-semibold"> 1 Month</span> of Nego.chat Pro for FREE
+              <div className="bg-white/10 backdrop-blur-md border-2 border-white/20 rounded-2xl p-6 md:p-8 shadow-2xl hover:bg-white/15 transition-all duration-300 hover:scale-105 animate-scale-in" style={{ animationDelay: "0.1s" }}>
+                <TrendingUp className="h-10 md:h-12 w-10 md:w-12 text-primary mx-auto mb-4 animate-float" style={{ animationDelay: "0.3s" }} />
+                <h3 className="font-heading font-bold text-xl md:text-2xl mb-2 text-white">Smart Negotiation</h3>
+                <p className="text-white/80 text-sm md:text-base">
+                  Haggles like a pro—knows when to hold firm, when to offer discounts
+                </p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-md border-2 border-white/20 rounded-2xl p-6 md:p-8 shadow-2xl hover:bg-white/15 transition-all duration-300 hover:scale-105 animate-scale-in" style={{ animationDelay: "0.2s" }}>
+                <Zap className="h-10 md:h-12 w-10 md:w-12 text-accent mx-auto mb-4 animate-float" style={{ animationDelay: "0.6s" }} />
+                <h3 className="font-heading font-bold text-xl md:text-2xl mb-2 text-white">Close Sales</h3>
+                <p className="text-white/80 text-sm md:text-base">
+                  Handles payment details and confirms orders while you sleep
                 </p>
               </div>
             </div>
 
-            {/* CTAs */}
-            <div className="space-y-4 pt-4">
+            {/* CTA Buttons */}
+            <div className="space-y-4 pt-6">
               <Button
                 onClick={() => navigate('/challenge')}
                 size="lg"
                 className="text-xl px-10 py-8 h-auto bg-gradient-to-r from-accent to-primary hover:shadow-[0_0_30px_rgba(147,51,234,0.5)] transition-all duration-300 hover:scale-110 font-bold rounded-full"
               >
                 <Sparkles className="mr-2 h-6 w-6" />
-                Try the Challenge
+                Try the AI Challenge
+                <ArrowRight className="ml-2 h-6 w-6" />
               </Button>
 
-              <p className="text-white/90 text-lg">
-                <span className="font-semibold">Join the waitlist below</span> to get early access to Nego.chat Pro
+              <p className="text-white/80 text-base">
+                Test our AI negotiator in action and win prizes!
               </p>
             </div>
           </div>
         </main>
       </div>
 
+      {/* Problem Section */}
+      <section className="py-20 px-4 bg-gradient-to-br from-background via-muted to-background">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 backdrop-blur-sm border border-primary/20 text-primary mb-6 animate-scale-in">
+            <Users className="h-4 w-4" />
+            <span className="text-sm font-semibold">For TikTok & Instagram Sellers</span>
+          </div>
+          
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-6 text-foreground">
+            Sound Familiar?
+          </h2>
+          
+          {/* Pain points */}
+          <div className="mb-8 space-y-4 max-w-2xl mx-auto">
+            <div className="flex items-start gap-4 bg-white dark:bg-gray-800 rounded-xl p-6 border-2 border-red-200 dark:border-red-900 shadow-lg">
+              <MessageCircle className="h-6 w-6 text-red-500 flex-shrink-0 mt-1" />
+              <div className="text-left">
+                <p className="text-lg md:text-xl text-foreground font-semibold mb-1">
+                  "Is this available?" × 200 comments
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  You're drowning in repetitive questions you can't answer fast enough
+                </p>
+              </div>
+            </div>
+            
+            <div className="flex items-start gap-4 bg-white dark:bg-gray-800 rounded-xl p-6 border-2 border-red-200 dark:border-red-900 shadow-lg">
+              <TrendingUp className="h-6 w-6 text-red-500 flex-shrink-0 mt-1" />
+              <div className="text-left">
+                <p className="text-lg md:text-xl text-foreground font-semibold mb-1">
+                  "Can you do 50 GHS?" when you're pricing at 100
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  You lose deals because you're too busy or accept lowball offers
+                </p>
+              </div>
+            </div>
+            
+            <div className="flex items-start gap-4 bg-white dark:bg-gray-800 rounded-xl p-6 border-2 border-red-200 dark:border-red-900 shadow-lg">
+              <Clock className="h-6 w-6 text-red-500 flex-shrink-0 mt-1" />
+              <div className="text-left">
+                <p className="text-lg md:text-xl text-foreground font-semibold mb-1">
+                  Missed sales because you couldn't reply fast enough
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  Customers move on to competitors who respond faster
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Solution Section - How It Works Video */}
+      <section id="video-section" className="py-16 md:py-24 bg-gradient-to-b from-muted to-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center space-y-8">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 backdrop-blur-sm border border-accent/20 text-accent mb-2">
+              <Sparkles className="h-4 w-4" />
+              <span className="text-sm font-semibold">See Negomind in Action</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground">
+              Watch How Negomind Handles Customer Negotiations
+            </h2>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+              Every comment. Every question. Every haggle. Handled automatically by AI.
+              <span className="block mt-2 text-foreground font-semibold">Just like having a full-time sales team.</span>
+            </p>
+            
+            {/* Demo Video */}
+            <div className="relative aspect-video bg-muted rounded-2xl border-2 border-primary/20 shadow-2xl overflow-hidden">
+              <iframe
+                className="absolute inset-0 w-full h-full"
+                src="https://www.youtube.com/embed/mMsaSFWUbKc"
+                title="Negomind Demo Video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+
+            {/* Value Props */}
+            <div className="grid md:grid-cols-3 gap-6 pt-8">
+              <div className="bg-gradient-to-br from-primary/5 to-primary/10 backdrop-blur-sm rounded-xl p-6 border-2 border-primary/20 hover:border-primary/40 transition-all">
+                <div className="text-4xl font-bold text-primary mb-3">24/7</div>
+                <p className="text-base text-foreground font-semibold mb-2">Never Miss a Sale</p>
+                <p className="text-sm text-muted-foreground">AI replies instantly, even while you sleep or are busy</p>
+              </div>
+              <div className="bg-gradient-to-br from-accent/5 to-accent/10 backdrop-blur-sm rounded-xl p-6 border-2 border-accent/20 hover:border-accent/40 transition-all">
+                <div className="text-4xl font-bold text-accent mb-3">Smart</div>
+                <p className="text-base text-foreground font-semibold mb-2">Negotiates Like a Pro</p>
+                <p className="text-sm text-muted-foreground">Knows when to hold firm and when to close the deal</p>
+              </div>
+              <div className="bg-gradient-to-br from-primary/5 to-primary/10 backdrop-blur-sm rounded-xl p-6 border-2 border-primary/20 hover:border-primary/40 transition-all">
+                <div className="text-4xl font-bold text-primary mb-3">∞</div>
+                <p className="text-base text-foreground font-semibold mb-2">Unlimited Capacity</p>
+                <p className="text-sm text-muted-foreground">Handle thousands of comments simultaneously</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Waitlist Form Section */}
-      <section id="waitlist" className="py-20 px-4 bg-gradient-to-br from-muted via-background to-muted relative overflow-hidden">
+      <section id="waitlist" className="py-20 px-4 bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5 relative overflow-hidden">
         {/* Decorative elements */}
         <div className="absolute top-0 left-0 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
@@ -194,44 +279,23 @@ const Waitlist = () => {
           {referredBy && !signedUp && (
             <div className="mb-6 bg-accent/20 border-2 border-accent/40 rounded-lg p-4">
               <p className="text-accent font-semibold">
-                🎉 You've been referred! Complete signup to join the challenge.
+                🎉 You've been referred! Complete signup to join the waitlist.
               </p>
             </div>
           )}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 backdrop-blur-sm border border-primary/20 text-primary mb-6 animate-scale-in">
+          
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 backdrop-blur-sm border border-accent/20 text-accent mb-6 animate-scale-in">
             <Sparkles className="h-4 w-4" />
-            <span className="text-sm font-semibold">For TikTok & Instagram Sellers</span>
+            <span className="text-sm font-semibold">Early Access</span>
           </div>
           
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-4 bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
             Join the Waitlist Today!
           </h2>
           
-          {/* Pain points - relatable scenarios */}
-          <div className="mb-8 space-y-3 max-w-2xl mx-auto">
-            <div className="flex items-center gap-3 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-lg p-4 border border-primary/20">
-              <MessageCircle className="h-5 w-5 text-primary flex-shrink-0" />
-              <p className="text-left text-base md:text-lg text-foreground">
-                <span className="font-semibold">"Is this available?"</span> × 200 comments
-              </p>
-            </div>
-            <div className="flex items-center gap-3 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-lg p-4 border border-primary/20">
-              <MessageCircle className="h-5 w-5 text-primary flex-shrink-0" />
-              <p className="text-left text-base md:text-lg text-foreground">
-                <span className="font-semibold">"Can you do 50?"</span> while you're pricing at 100
-              </p>
-            </div>
-            <div className="flex items-center gap-3 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-lg p-4 border border-primary/20">
-              <Clock className="h-5 w-5 text-accent flex-shrink-0" />
-              <p className="text-left text-base md:text-lg text-foreground">
-                Missed sales because you couldn't reply fast enough?
-              </p>
-            </div>
-          </div>
-
-          <p className="text-muted-foreground text-lg md:text-xl mb-8 max-w-2xl mx-auto font-medium">
-            Your AI Agent replies to <span className="text-primary font-bold">every comment</span>, negotiates smartly, and closes sales while you sleep. 
-            <span className="block mt-2 text-accent font-semibold">Never lose a customer again.</span>
+          <p className="text-muted-foreground text-lg md:text-xl mb-10 max-w-2xl mx-auto font-medium">
+            Be among the first to get <span className="text-primary font-bold">Negomind</span> for your business. 
+            <span className="block mt-2 text-accent font-semibold">Early users get exclusive benefits and priority support!</span>
           </p>
           
           <form onSubmit={handleSubmit} className="max-w-lg mx-auto">
@@ -257,14 +321,14 @@ const Waitlist = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      className="pl-10 h-12 text-base border-2 focus:border-primary"
+                      className="pl-10 h-14 text-base border-2 focus:border-primary"
                     />
                   </div>
                   <Button 
                     type="submit" 
                     disabled={isSubmitting} 
                     size="lg"
-                    className="sm:w-auto h-12 px-8 bg-gradient-to-r from-primary to-primary-glow hover:shadow-[0_0_20px_rgba(147,51,234,0.4)] transition-all duration-300"
+                    className="sm:w-auto h-14 px-8 bg-gradient-to-r from-primary to-accent hover:shadow-[0_0_20px_rgba(147,51,234,0.4)] transition-all duration-300 text-base font-bold"
                   >
                     {isSubmitting ? "Joining..." : "Get Early Access"}
                   </Button>
@@ -281,14 +345,14 @@ const Waitlist = () => {
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       required
-                      className="pl-10 h-12 text-base border-2 focus:border-primary"
+                      className="pl-10 h-14 text-base border-2 focus:border-primary"
                     />
                   </div>
                   <Button 
                     type="submit" 
                     disabled={isSubmitting} 
                     size="lg"
-                    className="sm:w-auto h-12 px-8 bg-gradient-to-r from-primary to-primary-glow hover:shadow-[0_0_20px_rgba(147,51,234,0.4)] transition-all duration-300"
+                    className="sm:w-auto h-14 px-8 bg-gradient-to-r from-primary to-accent hover:shadow-[0_0_20px_rgba(147,51,234,0.4)] transition-all duration-300 text-base font-bold"
                   >
                     {isSubmitting ? "Joining..." : "Get Early Access"}
                   </Button>
@@ -302,84 +366,35 @@ const Waitlist = () => {
               Join <span className="font-bold text-primary">500+</span> social media sellers getting their AI sales assistant
             </p>
           ) : (
-            <div className="mt-8 bg-gradient-to-r from-accent/10 to-primary/10 border-2 border-accent/30 rounded-2xl p-6">
+            <div className="mt-8 bg-gradient-to-r from-accent/10 to-primary/10 border-2 border-accent/30 rounded-2xl p-8">
               <div className="text-6xl mb-4">🎉</div>
-              <h3 className="text-2xl font-bold text-foreground mb-4">You're In!</h3>
+              <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">You're on the Waitlist!</h3>
               
-              <div className="bg-white dark:bg-gray-800 rounded-lg p-4 mb-4">
+              <div className="bg-white dark:bg-gray-800 rounded-lg p-5 mb-6">
                 <p className="text-sm text-muted-foreground mb-2">Your Referral Code:</p>
-                <p className="text-2xl font-mono font-bold text-primary">{referralCode}</p>
+                <p className="text-3xl font-mono font-bold text-primary">{referralCode}</p>
               </div>
 
-              <p className="text-foreground font-semibold mb-4">
-                📢 Share with 3 friends to stay in the challenge!
+              <p className="text-foreground font-semibold mb-5 text-lg">
+                📢 Share with 3 friends to move up the waitlist!
               </p>
 
-              <div className="flex gap-3 justify-center">
-                <Button onClick={shareReferralLink} className="bg-accent hover:bg-accent/90">
-                  <Share2 className="mr-2 h-4 w-4" />
+              <div className="flex gap-3 justify-center flex-wrap">
+                <Button onClick={shareReferralLink} className="bg-accent hover:bg-accent/90 h-12 px-6">
+                  <Share2 className="mr-2 h-5 w-5" />
                   Share Link
                 </Button>
-                <Button onClick={copyReferralLink} variant="outline">
-                  <Copy className="mr-2 h-4 w-4" />
+                <Button onClick={copyReferralLink} variant="outline" className="h-12 px-6">
+                  <Copy className="mr-2 h-5 w-5" />
                   Copy Link
                 </Button>
               </div>
 
-              <p className="text-xs text-muted-foreground mt-4">
-                Share your link: {window.location.origin}?ref={referralCode}
+              <p className="text-xs text-muted-foreground mt-6 break-all">
+                {window.location.origin}?ref={referralCode}
               </p>
             </div>
           )}
-        </div>
-      </section>
-
-      {/* How It Works Video Section */}
-      <section id="video-section" className="py-16 md:py-24 bg-gradient-to-b from-background to-muted">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center space-y-8">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 backdrop-blur-sm border border-accent/20 text-accent mb-2">
-              <Sparkles className="h-4 w-4" />
-              <span className="text-sm font-semibold">Experience AI-Powered Sales</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground">
-              See the AI Negotiator in Action
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Watch how our AI handles real customer negotiations - just like it will for your TikTok and Instagram sales. 
-              <span className="block mt-2 text-foreground font-semibold">Every comment. Every question. Every haggle. Handled automatically.</span>
-            </p>
-            
-            {/* Demo Video */}
-            <div className="relative aspect-video bg-muted rounded-2xl border-2 border-primary/20 shadow-2xl overflow-hidden">
-              <iframe
-                className="absolute inset-0 w-full h-full"
-                src="https://www.youtube.com/embed/mMsaSFWUbKc"
-                title="Nego Challenge Demo Video"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
-
-            {/* Value Props for Sellers */}
-            <div className="grid md:grid-cols-3 gap-4 pt-8">
-              <div className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 border border-primary/20">
-                <div className="text-3xl font-bold text-primary mb-2">24/7</div>
-                <p className="text-sm text-foreground font-semibold">Never Miss a Sale</p>
-                <p className="text-xs text-muted-foreground mt-2">AI replies instantly, even while you sleep</p>
-              </div>
-              <div className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 border border-accent/20">
-                <div className="text-3xl font-bold text-accent mb-2">Smart</div>
-                <p className="text-sm text-foreground font-semibold">Negotiates Like a Pro</p>
-                <p className="text-xs text-muted-foreground mt-2">Knows when to hold firm and when to close</p>
-              </div>
-              <div className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 border border-primary/20">
-                <div className="text-3xl font-bold text-primary mb-2">∞</div>
-                <p className="text-sm text-foreground font-semibold">Unlimited Capacity</p>
-                <p className="text-xs text-muted-foreground mt-2">Handle 1000s of comments simultaneously</p>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
     </div>
@@ -387,5 +402,3 @@ const Waitlist = () => {
 };
 
 export default Waitlist;
-
-
