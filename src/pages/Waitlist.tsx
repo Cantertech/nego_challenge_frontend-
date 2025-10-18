@@ -147,25 +147,169 @@ const Waitlist = () => {
               </div>
             </div>
 
-            {/* CTA Buttons */}
-            <div className="space-y-4 pt-6">
-              <Button
-                onClick={() => navigate('/challenge')}
-                size="lg"
-                className="text-xl px-10 py-8 h-auto bg-gradient-to-r from-accent to-primary hover:shadow-[0_0_30px_rgba(147,51,234,0.5)] transition-all duration-300 hover:scale-110 font-bold rounded-full"
-              >
-                <Sparkles className="mr-2 h-6 w-6" />
-                Try the AI Challenge
-                <ArrowRight className="ml-2 h-6 w-6" />
-              </Button>
-
-              <p className="text-white/80 text-base">
-                Test our AI negotiator in action and win prizes!
-              </p>
-            </div>
           </div>
         </main>
       </div>
+
+      {/* PROMINENT Waitlist Form Section - Right After Hero */}
+      <section id="waitlist" className="py-16 md:py-24 px-4 bg-gradient-to-br from-primary/10 via-accent/5 to-primary/10 relative overflow-hidden border-y-4 border-accent/30">
+        {/* Decorative elements */}
+        <div className="absolute top-0 left-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
+        
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          {referredBy && !signedUp && (
+            <div className="mb-8 bg-accent/20 border-2 border-accent/40 rounded-xl p-6 animate-bounce">
+              <p className="text-accent font-bold text-lg">
+                🎉 You've been referred! Complete signup below to join the waitlist.
+              </p>
+            </div>
+          )}
+          
+          <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-accent/20 backdrop-blur-sm border-2 border-accent/30 text-accent mb-6 animate-scale-in">
+            <Sparkles className="h-5 w-5" />
+            <span className="text-base font-bold">Limited Early Access</span>
+          </div>
+          
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-fade-in">
+            Join the Waitlist Today!
+          </h2>
+          
+          <p className="text-foreground text-xl md:text-2xl mb-10 max-w-3xl mx-auto font-semibold leading-relaxed">
+            Be among the first to get <span className="text-primary font-bold">Negomind</span> for your business. 
+            <span className="block mt-3 text-accent font-bold text-2xl">🎁 Early users get exclusive benefits!</span>
+          </p>
+          
+          <form onSubmit={handleSubmit} className="max-w-2xl mx-auto mb-8">
+            <Tabs value={contactMethod} onValueChange={setContactMethod} className="mb-6">
+              <TabsList className="grid w-full grid-cols-2 mb-8 h-14">
+                <TabsTrigger value="email" className="flex items-center gap-2 text-base font-semibold">
+                  <Mail className="h-5 w-5" />
+                  Email
+                </TabsTrigger>
+                <TabsTrigger value="phone" className="flex items-center gap-2 text-base font-semibold">
+                  <Phone className="h-5 w-5" />
+                  Phone
+                </TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="email" className="mt-0">
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <div className="relative flex-1">
+                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-6 w-6 text-muted-foreground" />
+                    <Input
+                      type="email"
+                      placeholder="Enter your email address"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      className="pl-14 h-16 text-lg border-2 border-primary/30 focus:border-primary rounded-xl shadow-lg"
+                    />
+                  </div>
+                  <Button 
+                    type="submit" 
+                    disabled={isSubmitting} 
+                    size="lg"
+                    className="sm:w-auto h-16 px-10 bg-gradient-to-r from-primary to-accent hover:shadow-[0_0_30px_rgba(147,51,234,0.5)] transition-all duration-300 hover:scale-105 text-lg font-bold rounded-xl"
+                  >
+                    {isSubmitting ? "Joining..." : "Join Waitlist →"}
+                  </Button>
+                </div>
+              </TabsContent>
+              
+              <TabsContent value="phone" className="mt-0">
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <div className="relative flex-1">
+                    <Phone className="absolute left-4 top-1/2 -translate-y-1/2 h-6 w-6 text-muted-foreground" />
+                    <Input
+                      type="tel"
+                      placeholder="Enter your phone number"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      required
+                      className="pl-14 h-16 text-lg border-2 border-primary/30 focus:border-primary rounded-xl shadow-lg"
+                    />
+                  </div>
+                  <Button 
+                    type="submit" 
+                    disabled={isSubmitting} 
+                    size="lg"
+                    className="sm:w-auto h-16 px-10 bg-gradient-to-r from-primary to-accent hover:shadow-[0_0_30px_rgba(147,51,234,0.5)] transition-all duration-300 hover:scale-105 text-lg font-bold rounded-xl"
+                  >
+                    {isSubmitting ? "Joining..." : "Join Waitlist →"}
+                  </Button>
+                </div>
+              </TabsContent>
+            </Tabs>
+          </form>
+          
+          {!signedUp ? (
+            <div className="space-y-6">
+              <p className="text-base text-muted-foreground">
+                Join <span className="font-bold text-primary text-xl">500+</span> social media sellers getting their AI sales assistant
+              </p>
+              
+              <div className="pt-6 border-t-2 border-dashed border-primary/20">
+                <p className="text-foreground text-lg mb-4 font-medium">Want to test the AI first?</p>
+                <Button
+                  onClick={() => navigate('/challenge')}
+                  variant="outline"
+                  size="lg"
+                  className="text-lg px-8 py-6 h-auto border-2 border-accent hover:bg-accent hover:text-white transition-all duration-300 rounded-xl"
+                >
+                  <Sparkles className="mr-2 h-5 w-5" />
+                  Try the AI Challenge
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </div>
+            </div>
+          ) : (
+            <div className="mt-8 bg-gradient-to-r from-accent/10 to-primary/10 border-2 border-accent/30 rounded-2xl p-8 animate-scale-in">
+              <div className="text-6xl mb-4">🎉</div>
+              <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-6">You're on the Waitlist!</h3>
+              
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 mb-6 shadow-lg">
+                <p className="text-sm text-muted-foreground mb-3">Your Referral Code:</p>
+                <p className="text-4xl font-mono font-bold text-primary mb-3">{referralCode}</p>
+                <p className="text-sm text-muted-foreground">Share this code to move up the waitlist!</p>
+              </div>
+
+              <p className="text-foreground font-bold mb-6 text-xl">
+                📢 Share with 3 friends to get priority access!
+              </p>
+
+              <div className="flex gap-4 justify-center flex-wrap mb-6">
+                <Button onClick={shareReferralLink} className="bg-accent hover:bg-accent/90 h-14 px-8 text-base rounded-xl">
+                  <Share2 className="mr-2 h-5 w-5" />
+                  Share Link
+                </Button>
+                <Button onClick={copyReferralLink} variant="outline" className="h-14 px-8 text-base border-2 rounded-xl">
+                  <Copy className="mr-2 h-5 w-5" />
+                  Copy Link
+                </Button>
+              </div>
+
+              <p className="text-xs text-muted-foreground break-all bg-muted/50 p-4 rounded-lg">
+                {window.location.origin}?ref={referralCode}
+              </p>
+              
+              <div className="mt-8 pt-8 border-t-2 border-dashed border-primary/20">
+                <p className="text-foreground text-lg mb-4 font-medium">Want to try the AI challenge?</p>
+                <Button
+                  onClick={() => navigate('/challenge')}
+                  variant="outline"
+                  size="lg"
+                  className="text-lg px-8 py-6 h-auto border-2 border-primary hover:bg-primary hover:text-white transition-all duration-300 rounded-xl"
+                >
+                  <Sparkles className="mr-2 h-5 w-5" />
+                  Try the Challenge
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
 
       {/* Problem Section */}
       <section className="py-20 px-4 bg-gradient-to-br from-background via-muted to-background">
@@ -266,135 +410,6 @@ const Waitlist = () => {
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Waitlist Form Section */}
-      <section id="waitlist" className="py-20 px-4 bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5 relative overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute top-0 left-0 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
-        
-        <div className="max-w-3xl mx-auto text-center relative z-10">
-          {referredBy && !signedUp && (
-            <div className="mb-6 bg-accent/20 border-2 border-accent/40 rounded-lg p-4">
-              <p className="text-accent font-semibold">
-                🎉 You've been referred! Complete signup to join the waitlist.
-              </p>
-            </div>
-          )}
-          
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 backdrop-blur-sm border border-accent/20 text-accent mb-6 animate-scale-in">
-            <Sparkles className="h-4 w-4" />
-            <span className="text-sm font-semibold">Early Access</span>
-          </div>
-          
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            Join the Waitlist Today!
-          </h2>
-          
-          <p className="text-muted-foreground text-lg md:text-xl mb-10 max-w-2xl mx-auto font-medium">
-            Be among the first to get <span className="text-primary font-bold">Negomind</span> for your business. 
-            <span className="block mt-2 text-accent font-semibold">Early users get exclusive benefits and priority support!</span>
-          </p>
-          
-          <form onSubmit={handleSubmit} className="max-w-lg mx-auto">
-            <Tabs value={contactMethod} onValueChange={setContactMethod} className="mb-4">
-              <TabsList className="grid w-full grid-cols-2 mb-6">
-                <TabsTrigger value="email" className="flex items-center gap-2">
-                  <Mail className="h-4 w-4" />
-                  Email
-                </TabsTrigger>
-                <TabsTrigger value="phone" className="flex items-center gap-2">
-                  <Phone className="h-4 w-4" />
-                  Phone
-                </TabsTrigger>
-              </TabsList>
-              
-              <TabsContent value="email" className="mt-0">
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <div className="relative flex-1">
-                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                    <Input
-                      type="email"
-                      placeholder="Enter your email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                      className="pl-10 h-14 text-base border-2 focus:border-primary"
-                    />
-                  </div>
-                  <Button 
-                    type="submit" 
-                    disabled={isSubmitting} 
-                    size="lg"
-                    className="sm:w-auto h-14 px-8 bg-gradient-to-r from-primary to-accent hover:shadow-[0_0_20px_rgba(147,51,234,0.4)] transition-all duration-300 text-base font-bold"
-                  >
-                    {isSubmitting ? "Joining..." : "Get Early Access"}
-                  </Button>
-                </div>
-              </TabsContent>
-              
-              <TabsContent value="phone" className="mt-0">
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <div className="relative flex-1">
-                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                    <Input
-                      type="tel"
-                      placeholder="Enter your phone number"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      required
-                      className="pl-10 h-14 text-base border-2 focus:border-primary"
-                    />
-                  </div>
-                  <Button 
-                    type="submit" 
-                    disabled={isSubmitting} 
-                    size="lg"
-                    className="sm:w-auto h-14 px-8 bg-gradient-to-r from-primary to-accent hover:shadow-[0_0_20px_rgba(147,51,234,0.4)] transition-all duration-300 text-base font-bold"
-                  >
-                    {isSubmitting ? "Joining..." : "Get Early Access"}
-                  </Button>
-                </div>
-              </TabsContent>
-            </Tabs>
-          </form>
-          
-          {!signedUp ? (
-            <p className="text-sm text-muted-foreground mt-6">
-              Join <span className="font-bold text-primary">500+</span> social media sellers getting their AI sales assistant
-            </p>
-          ) : (
-            <div className="mt-8 bg-gradient-to-r from-accent/10 to-primary/10 border-2 border-accent/30 rounded-2xl p-8">
-              <div className="text-6xl mb-4">🎉</div>
-              <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">You're on the Waitlist!</h3>
-              
-              <div className="bg-white dark:bg-gray-800 rounded-lg p-5 mb-6">
-                <p className="text-sm text-muted-foreground mb-2">Your Referral Code:</p>
-                <p className="text-3xl font-mono font-bold text-primary">{referralCode}</p>
-              </div>
-
-              <p className="text-foreground font-semibold mb-5 text-lg">
-                📢 Share with 3 friends to move up the waitlist!
-              </p>
-
-              <div className="flex gap-3 justify-center flex-wrap">
-                <Button onClick={shareReferralLink} className="bg-accent hover:bg-accent/90 h-12 px-6">
-                  <Share2 className="mr-2 h-5 w-5" />
-                  Share Link
-                </Button>
-                <Button onClick={copyReferralLink} variant="outline" className="h-12 px-6">
-                  <Copy className="mr-2 h-5 w-5" />
-                  Copy Link
-                </Button>
-              </div>
-
-              <p className="text-xs text-muted-foreground mt-6 break-all">
-                {window.location.origin}?ref={referralCode}
-              </p>
-            </div>
-          )}
         </div>
       </section>
     </div>
